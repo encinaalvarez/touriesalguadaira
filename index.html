@@ -29,7 +29,8 @@
         "firstScene": "Entrada",
         "autoLoad": true,
         "showControls": true,
-        "sceneFadeDuration": 1000
+        "sceneFadeDuration": 1000,
+        "hotSpotDebug": true
       },
 
       "scenes": {
@@ -39,8 +40,8 @@
           "panorama": "assets/scenes/Entrada1.png",
           "hotSpots": [
             {
-              "pitch": -5,
-              "yaw": 35,
+              "pitch": -8,
+              "yaw": 18,
               "type": "scene",
               "text": "Avanzar → Hall",
               "sceneId": "hall 2"
@@ -54,15 +55,15 @@
           "panorama": "assets/scenes/hall 2.png",
           "hotSpots": [
             {
-              "pitch": -5,
-              "yaw": -120,
+              "pitch": -6,
+              "yaw": -150,
               "type": "scene",
               "text": "← Volver a Entrada",
               "sceneId": "Entrada"
             },
             {
-              "pitch": -5,
-              "yaw": 40,
+              "pitch": -7,
+              "yaw": -20,
               "type": "scene",
               "text": "Avanzar → Patio 3",
               "sceneId": "patio3"
@@ -76,15 +77,15 @@
           "panorama": "assets/scenes/patio3.png",
           "hotSpots": [
             {
-              "pitch": -5,
-              "yaw": -130,
+              "pitch": -8,
+              "yaw": -145,
               "type": "scene",
               "text": "← Volver a Hall 2",
               "sceneId": "hall 2"
             },
             {
-              "pitch": -5,
-              "yaw": 45,
+              "pitch": -14,
+              "yaw": 28,
               "type": "scene",
               "text": "Avanzar → Carpa 4",
               "sceneId": "carpa-4"
@@ -98,15 +99,37 @@
           "panorama": "assets/scenes/carpa-4.png",
           "hotSpots": [
             {
-              "pitch": -5,
-              "yaw": -130,
+              "pitch": -8,
+              "yaw": -150,
               "type": "scene",
               "text": "← Volver a Patio 3",
               "sceneId": "patio3"
             },
             {
-              "pitch": -5,
-              "yaw": 40,
+              "pitch": -10,
+              "yaw": 22,
+              "type": "scene",
+              "text": "Avanzar → Rincón Mujer 7",
+              "sceneId": "RinconMujer 7"
+            }
+          ]
+        },
+
+        "RinconMujer 7": {
+          "title": "Rincón Mujer 7",
+          "type": "equirectangular",
+          "panorama": "assets/scenes/RinconMujer 7.png",
+          "hotSpots": [
+            {
+              "pitch": -8,
+              "yaw": -145,
+              "type": "scene",
+              "text": "← Volver a Carpa 4",
+              "sceneId": "carpa-4"
+            },
+            {
+              "pitch": -9,
+              "yaw": 30,
               "type": "scene",
               "text": "Avanzar → Huerto 5",
               "sceneId": "Huerto 5"
@@ -123,8 +146,8 @@
               "pitch": -5,
               "yaw": -130,
               "type": "scene",
-              "text": "← Volver a Carpa 4",
-              "sceneId": "carpa-4"
+              "text": "← Volver a Rincón Mujer 7",
+              "sceneId": "RinconMujer 7"
             },
             {
               "pitch": -5,
@@ -147,28 +170,6 @@
               "type": "scene",
               "text": "← Volver a Huerto 5",
               "sceneId": "Huerto 5"
-            },
-            {
-              "pitch": -5,
-              "yaw": 40,
-              "type": "scene",
-              "text": "Avanzar → Rincón Mujer 7",
-              "sceneId": "RinconMujer 7"
-            }
-          ]
-        },
-
-        "RinconMujer 7": {
-          "title": "Rincón Mujer 7",
-          "type": "equirectangular",
-          "panorama": "assets/scenes/RinconMujer 7.png",
-          "hotSpots": [
-            {
-              "pitch": -5,
-              "yaw": -130,
-              "type": "scene",
-              "text": "← Volver a Gradas 6",
-              "sceneId": "Gradas 6"
             }
           ]
         }
