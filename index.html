@@ -1,59 +1,175 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tour 360 - Recorrido</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tour 360 - Patio del colegio</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
   <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 
   <style>
-    html, body { height: 100%; margin: 0; }
-    #panorama { width: 100%; height: 100%; }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    #panorama {
+      width: 100%;
+      height: 100%;
+    }
   </style>
 </head>
-
 <body>
   <div id="panorama"></div>
 
   <script>
     pannellum.viewer('panorama', {
       "default": {
-        "firstScene": "Entrada",      // escena inicial correcta
+        "firstScene": "Entrada",
         "autoLoad": true,
         "showControls": true,
-        "sceneFadeDuration": 900,
-        "hotSpotDebug": true
+        "sceneFadeDuration": 1000
       },
 
       "scenes": {
         "Entrada": {
           "title": "Entrada",
           "type": "equirectangular",
-          "panorama": "assets/scenes/Entrada1.jpg",
+          "panorama": "recursos/escenas/Entrada1.png",
           "hotSpots": [
-            { "pitch": -2, "yaw": 40, "type": "scene", "text": "Salida → Hall 2", "sceneId": "hall 2" }
+            {
+              "pitch": -5,
+              "yaw": 35,
+              "type": "scene",
+              "text": "Avanzar → Hall",
+              "sceneId": "hall 2"
+            }
           ]
         },
 
         "hall 2": {
-          "title": "Hall",
+          "title": "Hall 2",
           "type": "equirectangular",
-          "panorama": "assets/scenes/hall 2.jpg",
+          "panorama": "recursos/escenas/hall 2.png",
           "hotSpots": [
-            { "pitch": -2, "yaw": -120, "type": "scene", "text": "← Volver (Entrada)", "sceneId": "Entrada" },
-            { "pitch": -2, "yaw": 60, "type": "scene", "text": "Salida → patio3", "sceneId": "patio3" }
+            {
+              "pitch": -5,
+              "yaw": -120,
+              "type": "scene",
+              "text": "← Volver a Entrada",
+              "sceneId": "Entrada"
+            },
+            {
+              "pitch": -5,
+              "yaw": 40,
+              "type": "scene",
+              "text": "Avanzar → Patio 3",
+              "sceneId": "patio3"
+            }
           ]
         },
 
         "patio3": {
           "title": "Patio 3",
           "type": "equirectangular",
-          "panorama": "assets/scenes/patio3.jpg",
+          "panorama": "recursos/escenas/patio3.png",
           "hotSpots": [
-            { "pitch": -2, "yaw": 180, "type": "scene", "text": "← Volver (hall)", "sceneId": "hall 2" }
-            { "pitch": -2, "yaw": 60, "type": "scene", "text": "Salida → carpa-4", "sceneId": "carpa-4" }
+            {
+              "pitch": -5,
+              "yaw": -130,
+              "type": "scene",
+              "text": "← Volver a Hall 2",
+              "sceneId": "hall 2"
+            },
+            {
+              "pitch": -5,
+              "yaw": 45,
+              "type": "scene",
+              "text": "Avanzar → Carpa 4",
+              "sceneId": "carpa-4"
+            }
+          ]
+        },
+
+        "carpa-4": {
+          "title": "Carpa 4",
+          "type": "equirectangular",
+          "panorama": "recursos/escenas/carpa-4.png",
+          "hotSpots": [
+            {
+              "pitch": -5,
+              "yaw": -130,
+              "type": "scene",
+              "text": "← Volver a Patio 3",
+              "sceneId": "patio3"
+            },
+            {
+              "pitch": -5,
+              "yaw": 40,
+              "type": "scene",
+              "text": "Avanzar → Huerto 5",
+              "sceneId": "Huerto 5"
+            }
+          ]
+        },
+
+        "Huerto 5": {
+          "title": "Huerto 5",
+          "type": "equirectangular",
+          "panorama": "recursos/escenas/Huerto 5.jpeg",
+          "hotSpots": [
+            {
+              "pitch": -5,
+              "yaw": -130,
+              "type": "scene",
+              "text": "← Volver a Carpa 4",
+              "sceneId": "carpa-4"
+            },
+            {
+              "pitch": -5,
+              "yaw": 40,
+              "type": "scene",
+              "text": "Avanzar → Gradas 6",
+              "sceneId": "Gradas 6"
+            }
+          ]
+        },
+
+        "Gradas 6": {
+          "title": "Gradas 6",
+          "type": "equirectangular",
+          "panorama": "recursos/escenas/Gradas 6.png",
+          "hotSpots": [
+            {
+              "pitch": -5,
+              "yaw": -130,
+              "type": "scene",
+              "text": "← Volver a Huerto 5",
+              "sceneId": "Huerto 5"
+            },
+            {
+              "pitch": -5,
+              "yaw": 40,
+              "type": "scene",
+              "text": "Avanzar → Rincón Mujer 7",
+              "sceneId": "RinconMujer 7"
+            }
+          ]
+        },
+
+        "RinconMujer 7": {
+          "title": "Rincón Mujer 7",
+          "type": "equirectangular",
+          "panorama": "recursos/escenas/RinconMujer 7.png",
+          "hotSpots": [
+            {
+              "pitch": -5,
+              "yaw": -130,
+              "type": "scene",
+              "text": "← Volver a Gradas 6",
+              "sceneId": "Gradas 6"
+            }
           ]
         }
       }
@@ -61,3 +177,11 @@
   </script>
 </body>
 </html>
+Estructura que debe quedar en GitHub
+index.html
+recursos/
+   escenas/
+      Entrada1.png
+      hall 2.png
+      patio3.png
+      carpa-4.png
