@@ -1,180 +1,196 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tour 360 - Patio del colegio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tour 360 con marcas visibles</title>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
   <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
 
   <style>
     html, body {
-      height: 100%;
       margin: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
     }
 
     #panorama {
       width: 100%;
-      height: 100%;
+      height: 100vh;
+      background: #000;
+    }
+
+    #coordsBox {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 9999;
+      background: rgba(0,0,0,0.75);
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    /* Marca roja visible */
+    .marca-hotspot {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: red;
+      color: white;
+      border: 3px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 12px;
+      box-sizing: border-box;
+      cursor: default;
+    }
+
+    /* Hotspot azul de navegación */
+    .nav-hotspot {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #0078ff;
+      color: white;
+      border: 3px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      box-sizing: border-box;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div id="panorama"></div>
 
-  <script>
-    pannellum.viewer('panorama', {
-      "default": {
-        "firstScene": "Entrada",
-        "autoLoad": true,
-        "showControls": true,
-        "sceneFadeDuration": 1000,
-        "hotSpotDebug": true
+<div id="coordsBox">
+  Escena: <span id="sceneName">-</span><br>
+  Yaw: <span id="yawVal">0</span><br>
+  Pitch: <span id="pitchVal">0</span>
+</div>
+
+<div id="panorama"></div>
+
+<script>
+  function crearMarca(label) {
+    return function(hotSpotDiv) {
+      hotSpotDiv.classList.add('marca-hotspot');
+      hotSpotDiv.innerHTML = label;
+      hotSpotDiv.style.marginLeft = '-19px';
+      hotSpotDiv.style.marginTop = '-19px';
+    };
+  }
+
+  function crearNavegacion(label, destino) {
+    return function(hotSpotDiv) {
+      hotSpotDiv.classList.add('nav-hotspot');
+      hotSpotDiv.innerHTML = '➜';
+      hotSpotDiv.title = label;
+      hotSpotDiv.style.marginLeft = '-21px';
+      hotSpotDiv.style.marginTop = '-21px';
+      hotSpotDiv.onclick = function() {
+        viewer.loadScene(destino);
+      };
+    };
+  }
+
+  const viewer = pannellum.viewer('panorama', {
+    default: {
+      firstScene: 'entrada',
+      autoLoad: true,
+      sceneFadeDuration: 1000
+    },
+
+    scenes: {
+      entrada: {
+        title: 'Entrada',
+        type: 'equirectangular',
+        panorama: 'assets/scenes/entrada.jpg',
+        hotSpots: [
+          { pitch: -8, yaw: 0, createTooltipFunc: crearMarca('E1') },
+          { pitch: -8, yaw: 30, createTooltipFunc: crearMarca('E2') },
+          { pitch: -8, yaw: 60, createTooltipFunc: crearMarca('E3') },
+          { pitch: -8, yaw: -30, createTooltipFunc: crearMarca('E4') },
+          { pitch: -8, yaw: -60, createTooltipFunc: crearMarca('E5') },
+          { pitch: -18, yaw: 15, createTooltipFunc: crearMarca('E6') },
+          { pitch: -18, yaw: -15, createTooltipFunc: crearMarca('E7') },
+
+          { pitch: -12, yaw: 25, createTooltipFunc: crearNavegacion('Ir a hall', 'hall') }
+        ]
       },
 
-      "scenes": {
-        "Entrada": {
-          "title": "Entrada",
-          "type": "equirectangular",
-          "panorama": "assets/scenes/Entrada1.png",
-          "hotSpots": [
-            {
-              "pitch": -8,
-              "yaw": 18,
-              "type": "scene",
-              "text": "Avanzar → Hall",
-              "sceneId": "hall 2"
-            }
-          ]
-        },
+      hall: {
+        title: 'Hall',
+        type: 'equirectangular',
+        panorama: 'assets/scenes/hall.jpg',
+        hotSpots: [
+          { pitch: -8, yaw: 0, createTooltipFunc: crearMarca('H1') },
+          { pitch: -8, yaw: 25, createTooltipFunc: crearMarca('H2') },
+          { pitch: -8, yaw: 50, createTooltipFunc: crearMarca('H3') },
+          { pitch: -8, yaw: -25, createTooltipFunc: crearMarca('H4') },
+          { pitch: -8, yaw: -50, createTooltipFunc: crearMarca('H5') },
+          { pitch: -18, yaw: 0, createTooltipFunc: crearMarca('H6') },
+          { pitch: -18, yaw: 35, createTooltipFunc: crearMarca('H7') },
 
-        "hall 2": {
-          "title": "Hall 2",
-          "type": "equirectangular",
-          "panorama": "assets/scenes/hall 2.png",
-          "hotSpots": [
-            {
-              "pitch": -6,
-              "yaw": -150,
-              "type": "scene",
-              "text": "← Volver a Entrada",
-              "sceneId": "Entrada"
-            },
-            {
-              "pitch": -7,
-              "yaw": -20,
-              "type": "scene",
-              "text": "Avanzar → Patio 3",
-              "sceneId": "patio3"
-            }
-          ]
-        },
+          { pitch: -12, yaw: -20, createTooltipFunc: crearNavegacion('Ir a entrada', 'entrada') },
+          { pitch: -12, yaw: 55, createTooltipFunc: crearNavegacion('Ir a patio1', 'patio1') }
+        ]
+      },
 
-        "patio3": {
-          "title": "Patio 3",
-          "type": "equirectangular",
-          "panorama": "assets/scenes/patio3.png",
-          "hotSpots": [
-            {
-              "pitch": -8,
-              "yaw": -145,
-              "type": "scene",
-              "text": "← Volver a Hall 2",
-              "sceneId": "hall 2"
-            },
-            {
-              "pitch": -14,
-              "yaw": 28,
-              "type": "scene",
-              "text": "Avanzar → Carpa 4",
-              "sceneId": "carpa-4"
-            }
-          ]
-        },
+      patio1: {
+        title: 'Patio 1',
+        type: 'equirectangular',
+        panorama: 'assets/scenes/patio1.jpg',
+        hotSpots: [
+          { pitch: -8, yaw: 0, createTooltipFunc: crearMarca('P1') },
+          { pitch: -8, yaw: 30, createTooltipFunc: crearMarca('P2') },
+          { pitch: -8, yaw: 60, createTooltipFunc: crearMarca('P3') },
+          { pitch: -8, yaw: -30, createTooltipFunc: crearMarca('P4') },
+          { pitch: -8, yaw: -60, createTooltipFunc: crearMarca('P5') },
+          { pitch: -18, yaw: 10, createTooltipFunc: crearMarca('P6') },
+          { pitch: -20, yaw: 35, createTooltipFunc: crearMarca('P7') },
+          { pitch: -22, yaw: -15, createTooltipFunc: crearMarca('P8') },
 
-        "carpa-4": {
-          "title": "Carpa 4",
-          "type": "equirectangular",
-          "panorama": "assets/scenes/carpa-4.png",
-          "hotSpots": [
-            {
-              "pitch": -8,
-              "yaw": -150,
-              "type": "scene",
-              "text": "← Volver a Patio 3",
-              "sceneId": "patio3"
-            },
-            {
-              "pitch": -10,
-              "yaw": 22,
-              "type": "scene",
-              "text": "Avanzar → Rincón Mujer 7",
-              "sceneId": "RinconMujer 7"
-            }
-          ]
-        },
+          { pitch: -12, yaw: -40, createTooltipFunc: crearNavegacion('Ir a hall', 'hall') },
+          { pitch: -18, yaw: 20, createTooltipFunc: crearNavegacion('Ir a carpa-4', 'carpa-4') }
+        ]
+      },
 
-        "RinconMujer 7": {
-          "title": "Rincón Mujer 7",
-          "type": "equirectangular",
-          "panorama": "assets/scenes/RinconMujer 7.png",
-          "hotSpots": [
-            {
-              "pitch": -8,
-              "yaw": -145,
-              "type": "scene",
-              "text": "← Volver a Carpa 4",
-              "sceneId": "carpa-4"
-            },
-            {
-              "pitch": -9,
-              "yaw": 30,
-              "type": "scene",
-              "text": "Avanzar → Huerto 5",
-              "sceneId": "Huerto 5"
-            }
-          ]
-        },
+      "carpa-4": {
+        title: 'Carpa 4',
+        type: 'equirectangular',
+        panorama: 'assets/scenes/carpa-4.jpg',
+        hotSpots: [
+          { pitch: -8, yaw: 0, createTooltipFunc: crearMarca('C1') },
+          { pitch: -8, yaw: 35, createTooltipFunc: crearMarca('C2') },
+          { pitch: -8, yaw: -35, createTooltipFunc: crearMarca('C3') },
+          { pitch: -18, yaw: 0, createTooltipFunc: crearMarca('C4') },
+          { pitch: -18, yaw: 25, createTooltipFunc: crearMarca('C5') },
+          { pitch: -18, yaw: -25, createTooltipFunc: crearMarca('C6') },
 
-        "Huerto 5": {
-          "title": "Huerto 5",
-          "type": "equirectangular",
-          "panorama": "assets/scenes/Huerto 5.jpeg",
-          "hotSpots": [
-            {
-              "pitch": -5,
-              "yaw": -130,
-              "type": "scene",
-              "text": "← Volver a Rincón Mujer 7",
-              "sceneId": "RinconMujer 7"
-            },
-            {
-              "pitch": -5,
-              "yaw": 40,
-              "type": "scene",
-              "text": "Avanzar → Gradas 6",
-              "sceneId": "Gradas 6"
-            }
-          ]
-        },
-
-        "Gradas 6": {
-          "title": "Gradas 6",
-          "type": "equirectangular",
-          "panorama": "assets/scenes/Gradas 6.png",
-          "hotSpots": [
-            {
-              "pitch": -5,
-              "yaw": -130,
-              "type": "scene",
-              "text": "← Volver a Huerto 5",
-              "sceneId": "Huerto 5"
-            }
-          ]
-        }
+          { pitch: -14, yaw: -20, createTooltipFunc: crearNavegacion('Ir a patio1', 'patio1') }
+        ]
       }
-    });
-  </script>
+    }
+  });
+
+  function actualizarCoords() {
+    document.getElementById("yawVal").textContent = viewer.getYaw().toFixed(1);
+    document.getElementById("pitchVal").textContent = viewer.getPitch().toFixed(1);
+    document.getElementById("sceneName").textContent = viewer.getScene();
+  }
+
+  viewer.on('load', actualizarCoords);
+  viewer.on('scenechange', actualizarCoords);
+  setInterval(actualizarCoords, 200);
+</script>
+
 </body>
 </html>
