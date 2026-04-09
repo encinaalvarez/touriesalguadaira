@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tour 360 - Recorrido</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+  <style>
+    html, body { height: 100%; margin: 0; }
+    #panorama { width: 100%; height: 100%; }
+  </style>
+</head>
+
+<body>
+  <div id="panorama"></div>
+
+  <script>
+    pannellum.viewer('panorama', {
+      "default": {
+        "firstScene": "Entrada",      // escena inicial correcta
+        "autoLoad": true,
+        "showControls": true,
+        "sceneFadeDuration": 900,
+        "hotSpotDebug": true
+      },
+
+      "scenes": {
+        "Entrada": {
+          "title": "Entrada",
+          "type": "equirectangular",
+          "panorama": "assets/scenes/Entrada1.jpg",
+          "hotSpots": [
+            { "pitch": -2, "yaw": 40, "type": "scene", "text": "Salida → Hall 2", "sceneId": "hall 2" }
+          ]
+        },
+
+        "hall 2": {
+          "title": "Hall",
+          "type": "equirectangular",
+          "panorama": "assets/scenes/hall 2.jpg",
+          "hotSpots": [
+            { "pitch": -2, "yaw": -120, "type": "scene", "text": "← Volver (Entrada)", "sceneId": "Entrada" },
+            { "pitch": -2, "yaw": 60, "type": "scene", "text": "Salida → patio3", "sceneId": "patio3" }
+          ]
+        },
+
+        "patio3": {
+          "title": "Patio 3",
+          "type": "equirectangular",
+          "panorama": "assets/scenes/patio3.jpg",
+          "hotSpots": [
+            { "pitch": -2, "yaw": 180, "type": "scene", "text": "← Volver (hall)", "sceneId": "hall 2" }
+            { "pitch": -2, "yaw": 60, "type": "scene", "text": "Salida → carpa-4", "sceneId": "carpa-4" }
+          ]
+        }
+      }
+    });
+  </script>
+</body>
+</html>
