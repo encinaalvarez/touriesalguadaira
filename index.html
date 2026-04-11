@@ -17,10 +17,9 @@ pannellum.viewer('panorama', {
   },
 
   scenes: {
-
     entrada: {
       type: "equirectangular",
-      panorama: "Entrada1.png",
+      panorama: "assets/scenes/Entrada1.png",
       hotSpots: [
         { pitch: -2, yaw: 12, type: "scene", sceneId: "hall" }
       ]
@@ -28,7 +27,7 @@ pannellum.viewer('panorama', {
 
     hall: {
       type: "equirectangular",
-      panorama: "hall 2.jpeg",
+      panorama: "assets/scenes/hall 2.jpeg",
       hotSpots: [
         { pitch: -1, yaw: -60, type: "scene", sceneId: "patio" },
         { pitch: -2, yaw: 58, type: "scene", sceneId: "entrada" }
@@ -37,7 +36,7 @@ pannellum.viewer('panorama', {
 
     patio: {
       type: "equirectangular",
-      panorama: "patio3.png",
+      panorama: "assets/scenes/patio3.png",
       hotSpots: [
         { pitch: -2, yaw: 25, type: "scene", sceneId: "huerto" }
       ]
@@ -45,7 +44,7 @@ pannellum.viewer('panorama', {
 
     huerto: {
       type: "equirectangular",
-      panorama: "Huerto5.jpeg",
+      panorama: "assets/scenes/Huerto 5.jpeg",
       hotSpots: [
         { pitch: -3, yaw: -110, type: "scene", sceneId: "gradas" }
       ]
@@ -53,7 +52,7 @@ pannellum.viewer('panorama', {
 
     gradas: {
       type: "equirectangular",
-      panorama: "Gradas6.png",
+      panorama: "assets/scenes/Gradas 6.png",
       hotSpots: [
         { pitch: -2, yaw: -70, type: "scene", sceneId: "rincon" }
       ]
@@ -61,141 +60,14 @@ pannellum.viewer('panorama', {
 
     rincon: {
       type: "equirectangular",
-      panorama: "Rinconmujer7.png",
+      panorama: "assets/scenes/RinconMujer 7.png",
       hotSpots: [
         { pitch: -2, yaw: 72, type: "scene", sceneId: "gradas" }
       ]
     }
-
   }
 });
 </script>
 
 </body>
-</html>  <div class="info">
-    Mueve la imagen y haz clic para ver coordenadas en consola
-  </div>
-
-  <script>
-    const viewer = pannellum.viewer('panorama', {
-      default: {
-        firstScene: 'entrada',
-        autoLoad: true,
-        sceneFadeDuration: 1000,
-        showControls: true,
-        showZoomCtrl: true,
-        showFullscreenCtrl: true,
-        mouseZoom: true
-      },
-
-      scenes: {
-        entrada: {
-          title: 'Entrada',
-          type: 'equirectangular',
-          panorama: 'assets/scenes/entrada.jpg',   // CAMBIA AQUÍ POR TU NOMBRE REAL
-          hotSpots: [
-            {
-              pitch: -3.4,
-              yaw: 7.1,
-              type: 'scene',
-              text: 'Ir a hall',
-              sceneId: 'hall'
-            }
-          ]
-        },
-
-        hall: {
-          title: 'Hall',
-          type: 'equirectangular',
-          panorama: 'assets/scenes/hall.jpg',      // CAMBIA AQUÍ POR TU NOMBRE REAL
-          hotSpots: [
-            {
-              pitch: -10,
-              yaw: -20,
-              type: 'scene',
-              text: 'Ir a entrada',
-              sceneId: 'entrada'
-            },
-            {
-              pitch: -3.4,
-              yaw: 7.1,
-              type: 'scene',
-              text: 'Ir a patio3',
-              sceneId: 'patio3'
-            }
-          ]
-        },
-
-        patio3: {
-          title: 'Patio 3',
-          type: 'equirectangular',
-          panorama: 'assets/scenes/patio3.jpg',    // CAMBIA AQUÍ POR TU NOMBRE REAL
-          hotSpots: [
-            {
-              pitch: -10,
-              yaw: -40,
-              type: 'scene',
-              text: 'Volver a hall',
-              sceneId: 'hall'
-            },
-            {
-              pitch: -31.9,
-              yaw: 61.8,
-              type: 'scene',
-              text: 'Ir a gradas5',
-              sceneId: 'gradas5'
-            },
-            {
-              pitch: -14.1,
-              yaw: 3.7,
-              type: 'scene',
-              text: 'Ir a carpa-4',
-              sceneId: 'carpa-4'
-            }
-          ]
-        },
-
-        "carpa-4": {
-          title: 'Carpa 4',
-          type: 'equirectangular',
-          panorama: 'assets/scenes/carpa-4.jpg',   // CAMBIA AQUÍ POR TU NOMBRE REAL
-          hotSpots: [
-            {
-              pitch: -14,
-              yaw: -20,
-              type: 'scene',
-              text: 'Volver a patio3',
-              sceneId: 'patio3'
-            }
-          ]
-        },
-
-        gradas5: {
-          title: 'Gradas 5',
-          type: 'equirectangular',
-          panorama: 'assets/scenes/gradas5.jpg',   // CAMBIA AQUÍ POR TU NOMBRE REAL
-          hotSpots: [
-            {
-              pitch: -12,
-              yaw: -30,
-              type: 'scene',
-              text: 'Volver a patio3',
-              sceneId: 'patio3'
-            }
-          ]
-        }
-      }
-    });
-
-    document.getElementById('panorama').addEventListener('click', function() {
-      console.log(
-        'Pitch: ' + viewer.getPitch() +
-        ', Yaw: ' + viewer.getYaw() +
-        ', Center Pitch: 0, Center Yaw: 0, HFOV: ' + viewer.getHfov()
-      );
-    });
-  </script>
-
-</body>
 </html>
-
