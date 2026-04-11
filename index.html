@@ -1,328 +1,78 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tour 360</title>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
-
-  <style>
-    html, body {
-      margin: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-
-    #panorama {
-      width: 100%;
-      height: 100vh;
-      background: #000;
-    }
-
-    /* Cruz fija en el centro */
-    #crosshair {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 40px;
-      height: 40px;
-      margin-left: -20px;
-      margin-top: -20px;
-      z-index: 9999;
-      pointer-events: none;
-    }
-
-    #crosshair::before,
-    #crosshair::after {
-      content: "";
-      position: absolute;
-      background: red;
-    }
-
-    #crosshair::before {
-      left: 19px;
-      top: 0;
-      width: 2px;
-      height: 40px;
-    }
-
-    #crosshair::after {
-      left: 0;
-      top: 19px;
-      width: 40px;
-      height: 2px;
-    }
-
-    #crosshair .dot {
-      position: absolute;
-      left: 16px;
-      top: 16px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: yellow;
-      border: 1px solid black;
-    }
-
-    .info {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 10000;
-      background: rgba(0,0,0,0.75);
-      color: #fff;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-
-    .nota {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      z-index: 10000;
-      background: rgba(255,255,255,0.9);
-      color: #111;
-      padding: 8px 10px;
-      border-radius: 8px;
-      font-size: 13px;
-      max-width: 320px;
-    }
-  </style>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css">
+  <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
 </head>
 <body>
 
-  <div id="panorama"></div>
+<div id="panorama" style="width:100%;height:100vh;"></div>
 
-  <div id="crosshair">
-    <div class="dot"></div>
-  </div>
+<script>
+pannellum.viewer('panorama', {
+  default: {
+    firstScene: "entrada",
+    autoLoad: true
+  },
 
-  <div class="info">
-    Mueve la imagen y haz clic para ver coordenadas en consola
-  </div>
+  scenes: {
 
-  <div class="nota">
-    Patio3 tiene 3 hotspots: hall, gradas5 y carpa-4.
-  </div>
+    entrada: {
+      type: "equirectangular",
+      panorama: "entrada1.jpg",
+      hotSpots: [
+        { pitch: -2, yaw: 12, type: "scene", sceneId: "hall" }
+      ]
+    },
 
-  <script>
-    const viewer = pannellum.viewer('panorama', {
-      default: {
-        firstScene: 'entrada',
-        autoLoad: true,
-        sceneFadeDuration: 1000,
-        showControls: true,
-        showZoomCtrl: true,
-        showFullscreenCtrl: true,
-        mouseZoom: true
-      },
+    hall: {
+      type: "equirectangular",
+      panorama: "hall2.jpg",
+      hotSpots: [
+        { pitch: -1, yaw: -60, type: "scene", sceneId: "patio" },
+        { pitch: -2, yaw: 58, type: "scene", sceneId: "entrada" }
+      ]
+    },
 
-      scenes: {
-        entrada: {
-          title: 'Entrada',
-          type: 'equirectangular',
-          panorama: 'assets/scenes/entrada1.jpg',
-          hotSpots: [
-            {
-              pitch: -3.4,
-              yaw: 7.1,
-              type: 'scene',
-              text: 'Ir a hall',
-              sceneId: 'hall'
-            }
-          ]
-        },
+    patio: {
+      type: "equirectangular",
+      panorama: "patio3.jpg",
+      hotSpots: [
+        { pitch: -2, yaw: 25, type: "scene", sceneId: "huerto" }
+      ]
+    },
 
-        hall: {
-          title: 'Hall',
-          type: 'equirectangular',
-          panorama: 'assets/scenes/hall 2.jpg',
-          hotSpots: [
-            {
-              pitch: -10,
-              yaw: -20,
-              type: 'scene',
-              text: 'Ir a entrada',
-              sceneId: 'entrada'
-            },
-            {
-              pitch: -3.4,
-              yaw: 7.1,
-              type: 'scene',
-              text: 'Ir a patio3',
-              sceneId: 'patio3'
-            }
-          ]
-        },
+    huerto: {
+      type: "equirectangular",
+      panorama: "huerto5.jpg",
+      hotSpots: [
+        { pitch: -3, yaw: -110, type: "scene", sceneId: "gradas" }
+      ]
+    },
 
-        patio3: {
-          title: 'Patio 3',
-          type: 'equirectangular',
-          panorama: 'assets/scenes/patio3.jpg',
-          hotSpots: [
-            {
-              pitch: -10,
-              yaw: -40,
-              type: 'scene',
-              text: 'Volver a hall',
-              sceneId: 'hall'
-            },
-            {
-              pitch: -31.9,
-              yaw: 61.8,
-              type: 'scene',
-              text: 'Ir a gradas5',
-              sceneId: 'gradas5'
-            },
-            {
-              pitch: -14.1,
-              yaw: 3.7,
-              type: 'scene',
-              text: 'Ir a carpa-4',
-              sceneId: 'carpa-4'
-            }
-          ]
-        },
+    gradas: {
+      type: "equirectangular",
+      panorama: "gradas6.jpg",
+      hotSpots: [
+        { pitch: -2, yaw: -70, type: "scene", sceneId: "rincon" }
+      ]
+    },
 
-        "carpa-4": {
-          title: 'Carpa 4',
-          type: 'equirectangular',
-          panorama: 'assets/scenes/carpa-4.jpg',
-          hotSpots: [
-            {
-              pitch: -14,
-              yaw: -20,
-              type: 'scene',
-              text: 'Volver a patio3',
-              sceneId: 'patio3'
-            }
-          ]
-        },
+    rincon: {
+      type: "equirectangular",
+      panorama: "rinconmujer7.jpg",
+      hotSpots: [
+        { pitch: -2, yaw: 72, type: "scene", sceneId: "gradas" }
+      ]
+    }
 
-        gradas5: {
-          title: 'Gradas 5',
-          type: 'equirectangular',
-          panorama: 'assets/scenes/gradas5.jpg',
-          hotSpots: [
-            {
-              pitch: -12,
-              yaw: -30,
-              type: 'scene',
-              text: 'Volver a patio3',
-              sceneId: 'patio3'
-            }
-          ]
-        }
-      }
-    });
-
-    document.getElementById('panorama').addEventListener('click', function() {
-      console.log(
-        'Pitch: ' + viewer.getPitch() +
-        ', Yaw: ' + viewer.getYaw() +
-        ', Center Pitch: 0, Center Yaw: 0, HFOV: ' + viewer.getHfov()
-      );
-    });
-  </script>
+  }
+});
+</script>
 
 </body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tour 360</title>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
-
-  <style>
-    html, body {
-      margin: 0;
-      height: 100%;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-
-    #panorama {
-      width: 100%;
-      height: 100vh;
-      background: #000;
-    }
-
-    #crosshair {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 40px;
-      height: 40px;
-      margin-left: -20px;
-      margin-top: -20px;
-      z-index: 9999;
-      pointer-events: none;
-    }
-
-    #crosshair::before,
-    #crosshair::after {
-      content: "";
-      position: absolute;
-      background: red;
-    }
-
-    #crosshair::before {
-      left: 19px;
-      top: 0;
-      width: 2px;
-      height: 40px;
-    }
-
-    #crosshair::after {
-      left: 0;
-      top: 19px;
-      width: 40px;
-      height: 2px;
-    }
-
-    #crosshair .dot {
-      position: absolute;
-      left: 16px;
-      top: 16px;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: yellow;
-      border: 1px solid black;
-    }
-
-    .info {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 10000;
-      background: rgba(0,0,0,0.75);
-      color: #fff;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-  </style>
-</head>
-<body>
-
-  <div id="panorama"></div>
-
-  <div id="crosshair">
-    <div class="dot"></div>
-  </div>
-
-  <div class="info">
+</html>  <div class="info">
     Mueve la imagen y haz clic para ver coordenadas en consola
   </div>
 
