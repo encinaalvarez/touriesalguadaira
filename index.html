@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <title>Tour 360</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css">
   <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
 </head>
@@ -17,6 +18,7 @@ pannellum.viewer('panorama', {
   },
 
   scenes: {
+
     entrada: {
       type: "equirectangular",
       panorama: "assets/scenes/Entrada1.png",
@@ -38,7 +40,17 @@ pannellum.viewer('panorama', {
       type: "equirectangular",
       panorama: "assets/scenes/patio3.png",
       hotSpots: [
-        { pitch: -2, yaw: 25, type: "scene", sceneId: "huerto" }
+        { pitch: -3, yaw: -22, type: "scene", sceneId: "hall" },
+        { pitch: -2, yaw: 25, type: "scene", sceneId: "carpa" },
+        { pitch: -1, yaw: 65, type: "scene", sceneId: "gradas" }
+      ]
+    },
+
+    carpa: {
+      type: "equirectangular",
+      panorama: "assets/scenes/carpa-4.png",
+      hotSpots: [
+        { pitch: -4, yaw: -75, type: "scene", sceneId: "patio" }
       ]
     },
 
@@ -46,7 +58,8 @@ pannellum.viewer('panorama', {
       type: "equirectangular",
       panorama: "assets/scenes/Huerto 5.jpeg",
       hotSpots: [
-        { pitch: -3, yaw: -110, type: "scene", sceneId: "gradas" }
+        { pitch: -3, yaw: -110, type: "scene", sceneId: "gradas" },
+        { pitch: -2, yaw: 95, type: "scene", sceneId: "patio" }
       ]
     },
 
@@ -54,7 +67,8 @@ pannellum.viewer('panorama', {
       type: "equirectangular",
       panorama: "assets/scenes/Gradas 6.png",
       hotSpots: [
-        { pitch: -2, yaw: -70, type: "scene", sceneId: "rincon" }
+        { pitch: -2, yaw: -70, type: "scene", sceneId: "rincon" },
+        { pitch: -1, yaw: 65, type: "scene", sceneId: "patio" }
       ]
     },
 
@@ -65,6 +79,7 @@ pannellum.viewer('panorama', {
         { pitch: -2, yaw: 72, type: "scene", sceneId: "gradas" }
       ]
     }
+
   }
 });
 </script>
