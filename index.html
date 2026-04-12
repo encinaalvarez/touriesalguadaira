@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Tour IES Alguadaira</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
   <style>
     html, body {
@@ -20,27 +19,31 @@
   </style>
 </head>
 <body>
-
   <div id="panorama"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
   <script>
     pannellum.viewer('panorama', {
       default: {
-        firstScene: 'hall',
-        sceneFadeDuration: 1000,
-        autoLoad: true
+        firstScene: 'entrada',
+        autoLoad: true,
+        sceneFadeDuration: 1000
       },
 
       scenes: {
         entrada: {
           title: 'Entrada',
           type: 'equirectangular',
-          panorama: 'assets/scenes/Entrada1.png'
-          /*
-          Aquí te falta darme la posición del hotspot desde entrada hacia hall.
-          Cuando la tengas, la añadimos.
-          */
+          panorama: 'assets/scenes/Entrada1.png',
+          hotSpots: [
+            {
+              pitch: -6.094264421203479,
+              yaw: -0.03550299815699852,
+              type: 'scene',
+              text: 'Ir al hall',
+              sceneId: 'hall'
+            }
+          ]
         },
 
         hall: {
@@ -74,7 +77,7 @@
               pitch: -8.325875120734773,
               yaw: 24.917857008179055,
               type: 'scene',
-              text: 'Ir a la carpa',
+              text: 'Ir a carpa',
               sceneId: 'carpa'
             },
             {
@@ -98,10 +101,6 @@
           title: 'Carpa',
           type: 'equirectangular',
           panorama: 'assets/scenes/carpa-4.png'
-          /*
-          Aquí no me has dado aún coordenadas.
-          Cuando las tengas, añadimos los hotspots.
-          */
         },
 
         huerto: {
@@ -165,6 +164,5 @@
       }
     });
   </script>
-
 </body>
 </html>
