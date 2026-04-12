@@ -1,146 +1,33 @@
-
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Tour 36011</title>
+  <meta charset="utf-8">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css">
   <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
 </head>
 <body>
 
-  <div id="panorama" style="width:100%; height:100vh;"></div>
+<div id="panorama" style="width:100%; height:100vh;"></div>
 
-  <script>
-    pannellum.viewer("panorama", {
-      "default": {
-        "firstScene": "entrada",
-        "autoLoad": true
-      },
-      "scenes": {
-        "entrada": {
-          "type": "equirectangular",
-          "panorama": "assets/scenes/Entrada1.png",
-          "hotSpots": [
-            {
-              "pitch": -2,
-              "yaw": 12,
-              "type": "scene",
-              "sceneId": "hall"
-            }
-          ]
-        },
-
-        "hall": {
-          "type": "equirectangular",
-          "panorama": "assets/scenes/hall 2.jpeg",
-          "hotSpots": [
-            {
-              "pitch": -2,
-              "yaw": -50,
-              "type": "scene",
-              "sceneId": "patio"
-            },
-            {
-              "pitch": -3,
-              "yaw": 35,
-              "type": "scene",
-              "sceneId": "entrada"
-            }
-          ]
-        },
-
-        "patio": {
-          "type": "equirectangular",
-          "panorama": "assets/scenes/patio3.png",
-          "hotSpots": [
-            {
-              "pitch": -3,
-              "yaw": -22,
-              "type": "scene",
-              "sceneId": "hall"
-            },
-            {
-              "pitch": -2,
-              "yaw": 25,
-              "type": "scene",
-              "sceneId": "carpa"
-            },
-            {
-              "pitch": -1,
-              "yaw": 65,
-              "type": "scene",
-              "sceneId": "huerto"
-            }
-          ]
-        },
-
-        "carpa": {
-          "type": "equirectangular",
-          "panorama": "assets/scenes/carpa-4.png",
-          "hotSpots": [
-            {
-              "pitch": -4,
-              "yaw": -75,
-              "type": "scene",
-              "sceneId": "patio"
-            }
-          ]
-        },
-
-        "huerto": {
-          "type": "equirectangular",
-          "panorama": "assets/scenes/Huerto 5.jpeg",
-          "hotSpots": [
-            {
-              "pitch": -3,
-              "yaw": -110,
-              "type": "scene",
-              "sceneId": "gradas"
-            },
-            {
-              "pitch": -2,
-              "yaw": 95,
-              "type": "scene",
-              "sceneId": "patio"
-            }
-          ]
-        },
-
-        "gradas": {
-          "type": "equirectangular",
-          "panorama": "assets/scenes/Gradas 6.png",
-          "hotSpots": [
-            {
-              "pitch": -2,
-              "yaw": -70,
-              "type": "scene",
-              "sceneId": "rincon"
-            },
-            {
-              "pitch": -1,
-              "yaw": 65,
-              "type": "scene",
-              "sceneId": "patio"
-            }
-          ]
-        },
-
-        "rincon": {
-          "type": "equirectangular",
-          "panorama": "assets/scenes/RinconMujer 7.png",
-          "hotSpots": [
-            {
-              "pitch": -2,
-              "yaw": 72,
-              "type": "scene",
-              "sceneId": "gradas"
-            }
-          ]
-        }
+<script>
+  var viewer = pannellum.viewer("panorama", {
+    "default": {
+      "firstScene": "hall",
+      "autoLoad": true
+    },
+    "scenes": {
+      "hall": {
+        "type": "equirectangular",
+        "panorama": "assets/scenes/hall 2.jpeg"
       }
-    });
-  </script>
+    }
+  });
+
+  document.getElementById("panorama").addEventListener("mousedown", function (e) {
+    var coords = viewer.mouseEventToCoords(e);
+    console.log("pitch:", coords[0], "yaw:", coords[1]);
+  });
+</script>
 
 </body>
 </html>
